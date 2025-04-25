@@ -17,7 +17,7 @@ enum class LottoRanks(
         fun from(matchCount: Int, isBonus: Boolean): LottoRanks {
             return when {
                 matchCount == FIRST.matchCount -> FIRST
-                matchCount == SECOND.matchCount && SECOND.isBonus == isBonus -> SECOND
+                matchCount == SECOND.matchCount && isBonus -> SECOND
                 matchCount == THIRD.matchCount -> THIRD
                 matchCount == FOURTH.matchCount -> FOURTH
                 matchCount == FIFTH.matchCount -> FIFTH
