@@ -7,26 +7,26 @@ object Validator {
     private const val ERROR_BONUS_DUPLICATE = "$ERROR_PREFIX Bonus number must not be one of the winning numbers."
     fun validateAmount(amount: Int) {
         if (amount <= 0 || amount % LOTTO_UNIT_PRICE != 0) {
-            throw IllegalArgumentException(INVALID_ERROR_AMOUNT)
+            throw InvalidAmountException(INVALID_ERROR_AMOUNT)
         }
     }
     fun validateWinningNumbers(numbers: List<Int>) {
         if (numbers.size != LOTTO_NUMBER_COUNT) {
-            throw IllegalArgumentException(ERROR_INVALID_WINNING_NUMBERS_COUNT)
+            throw InvalidWinningNumberException(ERROR_INVALID_WINNING_NUMBERS_COUNT)
         }
         if (numbers.toSet().size != LOTTO_NUMBER_COUNT) {
-            throw IllegalArgumentException(ERROR_DUPLICATE_WINNING_NUMBERS)
+            throw InvalidWinningNumberException(ERROR_DUPLICATE_WINNING_NUMBERS)
         }
         if (numbers.any { it !in LOTTO_NUMBER_MIN..LOTTO_NUMBER_MAX }) {
-            throw IllegalArgumentException(ERROR_NUMBER_OUT_OF_RANGE)
+            throw InvalidWinningNumberException(ERROR_NUMBER_OUT_OF_RANGE)
         }
     }
     fun validateBonusNumber(bonus: Int, winningNumbers: List<Int>) {
         if (bonus !in LOTTO_NUMBER_MIN..LOTTO_NUMBER_MAX) {
-            throw IllegalArgumentException(ERROR_NUMBER_OUT_OF_RANGE)
+            throw InvalidBonusNumberException(ERROR_NUMBER_OUT_OF_RANGE)
         }
         if (bonus in winningNumbers) {
-            throw IllegalArgumentException(ERROR_BONUS_DUPLICATE)
+            throw InvalidBonusNumberException(ERROR_BONUS_DUPLICATE)
         }
     }
 }
