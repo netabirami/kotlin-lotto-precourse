@@ -6,7 +6,7 @@ class Result(
 ) {
     private val lottoResults = mutableListOf<LottoRanks>()
 
-    fun analyzeResult(lottoTickets: List<Lotto>) {
+    fun prepareResults(lottoTickets: List<Lotto>) {
         lottoResults.clear()
         lottoResults.addAll(lottoTickets.map { lotto ->
             val match = lotto.countingWinningNumbers(winningNumbers)
@@ -14,14 +14,12 @@ class Result(
             LottoRanks.from(match, isBonus)
         })
     }
-
     fun getStatistics(): Map<LottoRanks, Int> {
         return lottoResults
             .filter { it != LottoRanks.MISS }
             .groupingBy { it }
             .eachCount()
     }
-
     fun calculateReturnRate(purchaseAmount: Int): Double {
         val totalPrize = lottoResults.sumOf { it.prize.toLong() }
         return (totalPrize.toDouble() / purchaseAmount) * 100

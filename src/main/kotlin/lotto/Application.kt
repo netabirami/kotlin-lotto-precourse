@@ -16,7 +16,7 @@ fun main() {
     val bonusNumber = InputsConsole.readBonusNumber(winningNumbers)
 
     val lottoResults = Result(winningNumbers, bonusNumber)
-    lottoResults.analyzeResult(lottoTickets)
+    lottoResults.prepareResults(lottoTickets)
 
     OutputConsole.printResultStatistics(lottoResults.getStatistics())
     OutputConsole.printsReturnRate(lottoResults.calculateReturnRate(amount))
