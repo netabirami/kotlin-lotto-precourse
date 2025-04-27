@@ -1,23 +1,23 @@
 package lotto
 
 fun main() {
-    OutputConsole.printLottoPurchaseAmount()
+    OutputView.printLottoPurchaseAmount()
     val amount = InputsConsole.readLottoPurchaseAmount()
     val ticketCount = (amount / 1000)
     val lottoTickets = List(ticketCount) { LottoGenerator().generate() }
 
-    OutputConsole.printTicketCount(ticketCount)
-    OutputConsole.printTickets(lottoTickets.map { it.getSortedNumbers() })
+    OutputView.printTicketCount(ticketCount)
+    OutputView.printTickets(lottoTickets.map { it.getSortedNumbers() })
 
-    OutputConsole.printWinningNumbers()
+    OutputView.printWinningNumbers()
     val winningNumbers = InputsConsole.readLottoWinningNumbers()
 
-    OutputConsole.printBonusNumber()
+    OutputView.printBonusNumber()
     val bonusNumber = InputsConsole.readBonusNumber(winningNumbers)
 
     val lottoResults = Result(winningNumbers, bonusNumber)
     lottoResults.prepareResults(lottoTickets)
 
-    OutputConsole.printResultStatistics(lottoResults.getStatistics())
-    OutputConsole.printsReturnRate(lottoResults.calculateReturnRate(amount))
+    OutputView.printResultStatistics(lottoResults.getStatistics())
+    OutputView.printsReturnRate(lottoResults.calculateReturnRate(amount))
 }

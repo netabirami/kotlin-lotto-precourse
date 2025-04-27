@@ -1,5 +1,5 @@
 package lotto
-object OutputConsole {
+object OutputView {
     private const val PROMPT_PURCHASE_AMOUNT = "Please enter the purchase amount."
     private const val PROMPT_WINNING_NUMBERS = "Please enter last week's winning numbers."
     private const val PROMPT_BONUS_NUMBER = "Please enter the bonus number."
